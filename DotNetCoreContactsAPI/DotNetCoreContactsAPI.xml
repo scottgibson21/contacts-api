@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DotNetCoreContactsAPI</name>
+    </assembly>
+    <members>
+        <member name="M:DotNetCoreContactsAPI.Controllers.ContactsController.GetContact(System.String,DotNetCoreContactsAPI.ViewModels.GetContactRequest)">
+            <summary>
+            Fetches a single contact by id
+            </summary>
+            <param name="request">Mandatory</param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetCoreContactsAPI.Controllers.ContactsController.CreateContact(DotNetCoreContactsAPI.Controllers.CreateContactRequest)">
+            <summary>
+            Saves a single contact
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetCoreContactsAPI.Controllers.ContactsController.DeleteContact(System.String)">
+            <summary>
+            Deletes a contact
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DotNetCoreContactsAPI.Section7">
+            <summary>
+            This is just for testing some options pattern stuff in startup, can be deleted whenever
+            </summary>
+        </member>
+    </members>
+</doc>
