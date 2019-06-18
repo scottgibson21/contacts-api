@@ -1,0 +1,7 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2-alpine as base
+
+WORKDIR /app
+
+COPY ./bin/Release/netcoreapp2.2/publish .
+
+ENTRYPOINT ["dotnet", "DotNetCoreContactsAPI.dll"]
