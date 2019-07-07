@@ -11,8 +11,10 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\Code - Personal\DotNetCoreContactsAPI\DotNetCoreContactsAPI\DotNetCoreContactsAPI.xml</DocumentationFile>
-    <PlatformTarget>x86</PlatformTarget>
+    <DocumentationFile>C:\'Code - Personal'\DotNetCoreContactsAPI\DotNetCoreContactsAPI\DotNetCoreContactsAPI.xml</DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
