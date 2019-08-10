@@ -43,6 +43,10 @@ namespace DotNetCoreContactsAPI.Providers.MongoDb
 
         public Contact FetchContact(string id)
         {
+            if (!ObjectId.TryParse(id, out ObjectId oid))
+            {
+                return null;
+            }
             
             var result = _contacts.FindSync(contact => contact.Id == id).FirstOrDefault();
 
@@ -68,6 +72,11 @@ namespace DotNetCoreContactsAPI.Providers.MongoDb
 
         public bool DeleteContact(string id)
         {
+            if (!ObjectId.TryParse(id, out ObjectId oid))
+            {
+                return false;
+            }
+
             var result = _contacts.DeleteOne(x => x.Id == id);
 
             if (result.DeletedCount == 0)
