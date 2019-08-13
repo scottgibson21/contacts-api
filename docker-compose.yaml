@@ -1,12 +1,16 @@
 version: '3.7'
 services:
   contacts_api:
-    image: apitest1:apitest1
+    image: contactsapi:v1
     ports:
       - "5002:80"
     environment:
       - MONGO_SERVER='http://mongo_db:27017'
+    depends_on:
+      -mongo_db
   mongo_db:
     image: mongo:latest
     ports:
       - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE:'ContactsDb'
