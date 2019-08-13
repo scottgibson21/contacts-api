@@ -17,8 +17,15 @@ namespace DotNetCoreContactsAPI
             CreateWebHostBuilder(args).Build().Run();
         }
 
-     public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args = null) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureLogging((context, builder) =>
+                {
+                    builder.ClearProviders();
+                    builder.AddConfiguration(context.Configuration.GetSection("Logging"));
+                    builder.AddDebug();
+                    builder.AddEventSourceLogger();
+                })
                 .UseStartup<Startup>();
     }
 }

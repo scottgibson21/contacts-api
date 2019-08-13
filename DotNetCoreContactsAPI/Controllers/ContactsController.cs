@@ -30,10 +30,10 @@ namespace DotNetCoreContactsAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult<GetContactResponse> GetContact(string id, [FromBody] GetContactRequest request = null)
+        [Route("{id}")]
+        public ActionResult<GetContactResponse> GetContact(string id)
         {
-
-            var result = _contactsService.FetchContact(request.ContactId);
+            var result = _contactsService.FetchContact(id);
 
             if (result == null)
             {

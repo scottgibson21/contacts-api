@@ -93,10 +93,8 @@ namespace DotNetCoreContactsAPI
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Contacts API");
-            }
-                
-                
-                );
+                c.RoutePrefix = String.Empty;
+            });
         }
     }
 }

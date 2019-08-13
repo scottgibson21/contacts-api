@@ -12,7 +12,8 @@ namespace DotNetCoreContactsAPI.Providers.MongoDb.Infrastructure
     {
         public static IServiceCollection RegisterMongoProvider(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton<IMongoClient>(new MongoClient(configuration[MongoDbConstants.ConnectionString]));
+            var connectionString = configuration.GetValue<string>("MongoDB:ConnectionString");
+            services.AddSingleton<IMongoClient>(new MongoClient(configuration.GetSection("MongoDB:ConnectionString").Value));
             services.AddSingleton(provider => provider.GetService<IMongoClient>().GetDatabase(MongoDbConstants.DatabaseName));
             services.AddSingleton(provider => provider.GetService<IMongoDatabase>().GetCollection<ContactsData>(MongoDbConstants.CollectionName));
 
