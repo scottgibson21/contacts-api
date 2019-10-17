@@ -95,12 +95,6 @@ namespace DotNetCoreContactsAPI.Controllers
         [Route("{id}")]
         public ActionResult<DeleteContactResponse> DeleteContact(string id)
         {
-
-            if(id == "1234")
-            {
-                return NotFound(new ErrorTest {StatusCode = (int)StatusCodes.Status200OK, ErrorMessage = "This is a test"});
-            };
-
             var result = _contactsService.DeleteContact(id);
 
             return new DeleteContactResponse

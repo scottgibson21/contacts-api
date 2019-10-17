@@ -43,14 +43,6 @@ namespace DotNetCoreContactsAPI
                 c.IncludeXmlComments(xmlPath);
             });
             services.Configure<AppSettingsTest>(Configuration.GetSection("AppSettingsTest"));
-            var test = Configuration.GetSection("TestValue");
-            var test2 = Configuration.GetSection("TestValue2:NestedTestValue:ExtraNestedValue");
-            var test3 = Configuration.GetSection("TestValue2").GetChildren();
-            var test4 = Configuration.GetSection("Section7");
-            var test5 = test4.GetChildren();
-
-            var section7 = new Section7();
-            Configuration.GetSection("Section7").Bind(section7);
 
             services.AddSingleton<IConfiguration>(Configuration);
 
@@ -64,27 +56,13 @@ namespace DotNetCoreContactsAPI
                 );
             services.AddSingleton<IContactsService, ContactsService>();
             services.RegisterMongoProvider(Configuration);
-            services
-                .AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-                .AddJwtBearer(IdentityServerAuthenticationDefaults.AuthenticationScheme, options =>
-                {
-                    options.Audience = "test";
-                    options.Authority = "test";
-                    options.RequireHttpsMetadata = false;
-                });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
             }
             app.UseAuthentication();
             app.UseHttpsRedirection();
