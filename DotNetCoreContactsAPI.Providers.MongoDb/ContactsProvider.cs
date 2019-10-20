@@ -7,6 +7,7 @@ using DotNetCoreContactsAPI.Domain;
 using DotNetCoreContactsAPI.Domain.Requests;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace DotNetCoreContactsAPI.Providers.MongoDb
 {
@@ -19,10 +20,10 @@ namespace DotNetCoreContactsAPI.Providers.MongoDb
             _contacts = contactsCollection;
         }
 
-        public Contact InsertContact(CreateContactRequest request)
+        public async Task<Contact> InsertContact(Contact request)
         {
             var contact = MapToMongoContact(request);
-             _contacts.InsertOne(contact);
+            await _contacts.InsertOneAsync(contact);
 
             var insertedContact = new Contact
             {
@@ -37,8 +38,6 @@ namespace DotNetCoreContactsAPI.Providers.MongoDb
             };
 
             return insertedContact;
-
-
         }
 
         public Contact FetchContact(string id)
@@ -90,7 +89,7 @@ namespace DotNetCoreContactsAPI.Providers.MongoDb
 
         #region helpers
 
-        private ContactsData MapToMongoContact(CreateContactRequest request)
+        private ContactsData MapToMongoContact(Contact request)
         {
             return new ContactsData
             {

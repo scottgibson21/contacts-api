@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using DotNetCoreContactsAPI.Domain.Requests;
 
 namespace DotNetCoreContactsAPI.Domain
@@ -13,9 +14,10 @@ namespace DotNetCoreContactsAPI.Domain
             _contactsProvider = contactsProvider;
         }
 
-        public Contact Create(CreateContactRequest request)
+        public async Task<Contact> Create(Contact request)
         {
-            return _contactsProvider.InsertContact(request);
+            var response = await _contactsProvider.InsertContact(request);
+            return response;
         }
 
         public Contact FetchContact(string id)

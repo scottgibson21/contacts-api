@@ -59,10 +59,10 @@ namespace DotNetCoreContactsAPI.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult<CreateContactResponse> CreateContact(
+        public async Task<ActionResult<CreateContactResponse>> CreateContact(
             [FromBody] CreateContactRequest request)
         {
-            var contact = _contactsService.Create(new Domain.Requests.CreateContactRequest
+            var contact = await _contactsService.Create(new Contact
             {
                 FirstName = request.FirstName,
                 LastName = request.LastName,

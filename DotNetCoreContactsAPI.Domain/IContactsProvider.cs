@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using DotNetCoreContactsAPI.Domain.Requests;
 
 namespace DotNetCoreContactsAPI.Domain
@@ -8,7 +9,7 @@ namespace DotNetCoreContactsAPI.Domain
     public interface IContactsProvider
     {
         Contact FetchContact(string id);
-        Contact InsertContact(CreateContactRequest request);
+        Task<Contact> InsertContact(Contact request);
         bool DeleteContact(string id);
     }
 }
