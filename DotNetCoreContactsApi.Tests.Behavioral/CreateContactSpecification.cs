@@ -71,6 +71,42 @@ namespace DotNetCoreContactsApi.Tests.Behavioral
             response.LastName.Should().Be(request.LastName);
         }
 
+        [Fact(DisplayName = "Create contact should return 400 for empty request")]
+        public async Task Test2()
+        {
+            //given I have a test server and client
+            Setup();
+
+            //when I fetch the client
+            var httpResponse = await Client.PostAsJsonAsync(Url, default(CreateContactRequest));
+
+            //then I expect the response 
+            httpResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [Fact(DisplayName = "Create contact should return 400 when required field is missing")]
+        public async Task Test3()
+        {
+            //given I have a test server and client
+            Setup();
+
+            var request = new CreateContactRequest
+            {
+                LastName = "testlast",
+                PhoneNumber = 5555555555,
+                Address = "1234 Main Street",
+                City = "San Luis Obispo",
+                State = "CA",
+                Zip = "93401"
+            };
+
+            //when I fetch the client
+            var httpResponse = await Client.PostAsJsonAsync(Url, request);
+
+            //then I expect the response 
+            httpResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
         private Contact MapToContactFrom(CreateContactRequest request)
         {
             return new Contact
