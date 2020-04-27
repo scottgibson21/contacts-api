@@ -38,6 +38,14 @@ Note: the example below binds the host port 5007 to port 80 of the container
 ##### ***Delete all local containers and their volumes***  
 `docker rm -vf $(docker ps -a -q)`
 
+##### ***Stop a specific local container***  
+`docker stop {containerId}`
+
+##### ***View current local containers***  
+`docker container list`
+
+##### ***Open shell in container***  
+`docker exec -it {containerId} sh`
 
 
 
