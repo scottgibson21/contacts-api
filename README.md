@@ -8,6 +8,11 @@ This is a demo of a basic CRUD Web API built on .Net Core and Mongo with support
 4. Open a terminal at the main repo folder level
 5. run `docker-compose up`
 
+## Known Issues
+```diff
+- There are known issues with the docker-compose.yaml file, specifically with connecting to the docker MongoDb instance. This is currently being worked on.  In the meantime you would need to install mongoDb locally, and manually create a MongoDb database named 'ContactsDb'
+```
+
 ## Troubleshooting
 
 ### Helpful Docker Commands
