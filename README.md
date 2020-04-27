@@ -3,10 +3,10 @@ This is a demo of a basic CRUD Web API built on .Net Core and Mongo with support
 
 ## Setup
 1. Clone the repo
-2. Ensure that you have docker desktop installed (download [here](https://www.docker.com/products/docker-desktop))
+2. Ensure that you have Docker Desktop installed (download [here](https://www.docker.com/products/docker-desktop))
 3. ensure that you have Docker Compose installed (download [here](https://docs.docker.com/compose/install/))
 4. Open a terminal at the main repo folder level
-5. run ```docker-compose up```
+5. run `docker-compose up`
 
 ## Troubleshooting
 
@@ -15,7 +15,7 @@ This is a demo of a basic CRUD Web API built on .Net Core and Mongo with support
 #### Images
 
 ##### ***Manually build a docker image*** (details docs [here](https://docs.docker.com/engine/reference/commandline/build/))
-Note: you must cd to the repo folder level or where the dockerfile exists
+Note: you must cd to the repo folder level or where the dockerfile exists  
 `docker build . -f .\Dockerfile.txt -t {reponame}:{tage}`
  
 ##### ***View all local images***    
