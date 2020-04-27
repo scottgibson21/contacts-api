@@ -47,6 +47,9 @@ Note: the example below binds the host port 5007 to port 80 of the container
 ##### ***Open shell in container***  
 `docker exec -it {containerId} sh`
 
+##### ***Exit Docker container shell***  
+`ctrl + d`
+
 
 
 
