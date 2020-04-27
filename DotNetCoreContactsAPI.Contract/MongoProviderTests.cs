@@ -8,7 +8,7 @@ namespace DotNetCoreContactsAPI.Contract
         [Fact]
         public void Test1()
         {
-
+            //TODO: add contract test proof of concept
         }
     }
 }

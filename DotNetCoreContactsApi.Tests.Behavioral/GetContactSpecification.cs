@@ -1,4 +1,4 @@
-using DotNetCoreContactsApi.Tests.Behavioral.Common;
+﻿using DotNetCoreContactsApi.Tests.Behavioral.Common;
 using DotNetCoreContactsAPI;
 using DotNetCoreContactsAPI.Controllers;
 using DotNetCoreContactsAPI.Domain;
@@ -15,9 +15,9 @@ using Xunit;
 
 namespace DotNetCoreContactsApi.Tests.Behavioral
 {
-    public class CreateContactSpecification : Specification
+    public class GetContactSpecification : Specification
     {
-        private const string Url = "api/Contacts";
+        private const string Url = "api/Contacts/";
         public HttpClient Client { get; set; }
         public Mock<IContactsProvider> ContactsProviderMock { get; set; }
         private void Setup()
@@ -34,6 +34,7 @@ namespace DotNetCoreContactsApi.Tests.Behavioral
             Client.DefaultRequestHeaders
               .Accept
               .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
         }
 
         [Fact(DisplayName = "Create contact should return 200 for valid request")]
@@ -43,8 +44,9 @@ namespace DotNetCoreContactsApi.Tests.Behavioral
             Setup();
 
             //given I have a valid request
-            var request = new CreateContactRequest
+            var contact = new Contact
             {
+                Id = "ContactId",
                 FirstName = "testfirst",
                 LastName = "testlast",
                 PhoneNumber = 5555555555,
@@ -54,20 +56,18 @@ namespace DotNetCoreContactsApi.Tests.Behavioral
                 Zip = "93401"
             };
 
-            //given I have a contact to return
-            var contact = MapToContactFrom(request);
-
-            ContactsProviderMock.Setup(a => a.InsertContact(It.IsAny<Contact>()))
-                .Returns(Task.FromResult(contact));
+            ContactsProviderMock.Setup(a => a.FetchContact(contact.Id))
+                .Returns(contact);
 
             //when I fetch the client
-            var httpResponse = await Client.PostAsJsonAsync(Url, request);
+            var httpResponse = await Client.GetAsync(Url + contact.Id);
 
             //then I expect the response 
             httpResponse.StatusCode.Should().Be(HttpStatusCode.OK);
             var response = await httpResponse.Content.ReadAsAsync<CreateContactResponse>();
-            response.FirstName.Should().Be(request.FirstName);
-            response.LastName.Should().Be(request.LastName);
+            response.Id.Should().Be(contact.Id);
+            response.FirstName.Should().Be(contact.FirstName);
+            response.LastName.Should().Be(contact.LastName);
         }
 
         [Fact(DisplayName = "Create contact should return 400 for empty request")]
@@ -76,34 +76,26 @@ namespace DotNetCoreContactsApi.Tests.Behavioral
             //given I have a test server and client
             Setup();
 
+            var id = "FakeId";
+
             //when I fetch the client
-            var httpResponse = await Client.PostAsJsonAsync(Url, default(CreateContactRequest));
+            var httpResponse = await Client.GetAsync(Url + id);
 
             //then I expect the response 
-            httpResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
 
-        [Fact(DisplayName = "Create contact should return 400 when required field is missing")]
+        [Fact(DisplayName = "Create contact should return 403 when required field is missing")]
         public async Task Test3()
         {
             //given I have a test server and client
             Setup();
 
-            var request = new CreateContactRequest
-            {
-                LastName = "testlast",
-                PhoneNumber = 5555555555,
-                Address = "1234 Main Street",
-                City = "San Luis Obispo",
-                State = "CA",
-                Zip = "93401"
-            };
-
             //when I fetch the client
-            var httpResponse = await Client.PostAsJsonAsync(Url, request);
+            var httpResponse = await Client.GetAsync(Url);
 
             //then I expect the response 
-            httpResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            httpResponse.StatusCode.Should().Be(HttpStatusCode.MethodNotAllowed);
         }
 
         private Contact MapToContactFrom(CreateContactRequest request)

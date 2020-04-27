@@ -16,15 +16,12 @@ namespace DotNetCoreContactsAPI.Domain
 
         public async Task<Contact> Create(Contact request)
         {
-            var response = await _contactsProvider.InsertContact(request);
-            return response;
+            return await _contactsProvider.InsertContact(request);
         }
 
         public Contact FetchContact(string id)
         {
-            var result = _contactsProvider.FetchContact(id);
-
-            return result;
+            return _contactsProvider.FetchContact(id);
         }
 
         public bool DeleteContact(string id)
