@@ -50,6 +50,7 @@ Note: the example below binds the host port 5007 to port 80 of the container
 ##### ***Exit Docker container shell***  
 `ctrl + d`
 
+test
 
 
 
