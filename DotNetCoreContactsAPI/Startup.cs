@@ -34,10 +34,10 @@ namespace DotNetCoreContactsAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Contacts API", Description = "API for managing contacts" });
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "title", Version = "v1" });
 
                 var xmlPath = System.AppDomain.CurrentDomain.BaseDirectory + @"DotNetCoreContactsAPI.xml";
                 c.IncludeXmlComments(xmlPath);
@@ -66,7 +66,11 @@ namespace DotNetCoreContactsAPI
             }
             app.UseAuthentication();
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
