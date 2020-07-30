@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8D65697C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCoreContactsAPI.Contract", "DotNetCoreContactsAPI.Contract\DotNetCoreContactsAPI.Contract.csproj", "{2890BC7E-F452-4D03-8623-4B6170DDCDC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCoreContactsApi.Tests.Behavioral", "DotNetCoreContactsApi.Tests.Behavioral\DotNetCoreContactsApi.Tests.Behavioral.csproj", "{E9E0B133-B2EB-4678-BB8D-E68A36680F55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCoreContactsApi.Tests.Behavioral", "DotNetCoreContactsApi.Tests.Behavioral\DotNetCoreContactsApi.Tests.Behavioral.csproj", "{E9E0B133-B2EB-4678-BB8D-E68A36680F55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

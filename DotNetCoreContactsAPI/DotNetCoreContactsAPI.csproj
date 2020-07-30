@@ -6,12 +6,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\scott.gibson\source\repos\DotNetCoreContactsAPI\DotNetCoreContactsAPI\DotNetCoreContactsAPI.xml</DocumentationFile>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
     <WarningLevel>0</WarningLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\'Code - Personal'\DotNetCoreContactsAPI\DotNetCoreContactsAPI\DotNetCoreContactsAPI.xml</DocumentationFile>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE</DefineConstants>
